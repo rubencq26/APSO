@@ -6,3 +6,6 @@
 - **clear** borra pantalla
 - **CTRL + C** aborta
 - **passwd** cambia la cntraseña
+- insertamos disco con complementos
+- sudo apt install bzip2(en la carpeta del disco)
+- sudo apt install gcc make perl
