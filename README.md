@@ -10,3 +10,11 @@
 - sudo apt install bzip2(en la carpeta del disco)
 - sudo apt install gcc make perl
 - **sftp://172.17.21.248/home/ruben.conde** en el explorador de archivos en linux para trasferencia de archivos a Polifemo
+- mkdir nombre crea un directorio ruta relativa
+- mkdir /home/ruben.conde/prac1 crea un directorio en ruta absoluta
+- **cp /home/ruben.conde/prac1/leon /home/ruben.conde/prueba** copia archivos
+- **mv /home/ruben.conde/prac1/leon /home/ruben.conde/prueba** mueve archivos
+- **rm -r /** borraria todos los directorios
+- **cat fichero** muestra el contenido del fichero
+- **more fichero** para visualizar un archivo grande
+- **echo hola mundo** saca por pantalla lo que pongas
