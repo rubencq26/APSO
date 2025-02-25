@@ -9,3 +9,4 @@
 - insertamos disco con complementos
 - sudo apt install bzip2(en la carpeta del disco)
 - sudo apt install gcc make perl
+- **sftp://172.17.21.248/home/ruben.conde** en el explorador de archivos en linux para trasferencia de archivos a Polifemo
