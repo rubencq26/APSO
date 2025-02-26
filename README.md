@@ -18,3 +18,5 @@
 - **cat fichero** muestra el contenido del fichero
 - **more fichero** para visualizar un archivo grande
 - **echo hola mundo** saca por pantalla lo que pongas
+- **nano /home/ruben.conde/prac1/leon** editor de texto simple
+- **joe /home/ruben.conde/prac1/leon** editor de texto mas completo, ctrl + k y luego pulsas h tienes la ayuda, ctrl + k y x sales guardando el fichero, ctrl + k y q sales sin guardar 
