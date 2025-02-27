@@ -205,7 +205,7 @@ fin
 ```
 33. Acceda con una sola instrucción a su directorio usuario.
   ```bash
-  cd
+  ruben.conde@polifemo:~$ cd
 ```
 34. Estando en el directorio de trabajo `Datos`, elimine mediante ruta absoluta el fichero `file2.txt` que se ubica dentro del directorio `tmpfiles`.
   ```bash
