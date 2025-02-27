@@ -1,4 +1,5 @@
 # Ordenes:
+## Clase 1
 - **pwd** muestra el directorio en el que te encuentras
 - **ls** muestra los archivos que hay en la carpeta que te encuentras
 - **clear** borra pantalla
@@ -18,3 +19,44 @@
 - **echo hola mundo** saca por pantalla lo que pongas
 - **nano /home/ruben.conde/prac1/leon** editor de texto simple
 - **joe /home/ruben.conde/prac1/leon** editor de texto mas completo, ctrl + k y luego pulsas h tienes la ayuda, ctrl + k y x sales guardando el fichero, ctrl + k y q sales sin guardar 
+
+## Clase 2
+- **ruben.conde@polifemo:~/prac1$ chmod u+w,o-x  p1.txt** cambia los permisos
+- ruben.conde@polifemo:~/prac1$ chmod ugo+rwx  p1.txt
+- ruben.conde@polifemo:~/prac1$ chmod o-r  p1.txt
+- ruben.conde@polifemo:~/prac1$ chmod 744 p1.txt
+rwxrwxrwx 111 100 100 744
+- ruben.conde@polifemo:~$ find /home/so -name "*.???" busca por nombre del archivo
+- ruben.conde@polifemo:~$ find /home/so -type d (f d l) busca ficheros, directorios o enlaces
+- ruben.conde@polifemo:~$ find /home/so -mtime +5 busca ficheros modificados hace mas de 5 dias
+- -atime +5 accedidos hace mas de 5 dias
+- -ctime +5 su estado cambio hace mas de 5 dias
+- -mmin +5 modificado hace 5 minutos
+- ruben.conde@polifemo:~$ ln prac1/p1.txt enlaceap1.txt crea un hardlink
+- ruben.conde@polifemo:~$ ln -s prac1/solp1.txt  enlaceasolp1simbolico.txt crea un softlink
+- ruben.conde@polifemo:~$ grep polifemo prac1/solp1.txt hace una busqueda del patron dentro de un fichero
+- ruben.conde@polifemo:~$ wc polifemo prac1/solp1.txt  hace un recuento de las coincidencias del patron
+- ruben.conde@polifemo:~$ cal 2 2025 muestra el calendario de febrero de 2025
+- ruben.conde@polifemo:~$ date te devuelve la fecha y hora
+- ruben.conde@polifemo:~$ df tamaño libre en el disco
+- ruben.conde@polifemo:~$ sort prac1/solp1.txt ordena alfabeticamente un fichero de texto
+- ruben.conde@polifemo:~$ who muestra quien esta conectado
+- ruben.conde@polifemo:~$ ps muestra los procesos activos
+- ruben.conde@polifemo:~$ tty nombre de la terminal que estoy usando
+- ruben.conde@polifemo:~$ id de que grupo soy y a que grupo pertenezco
+- ruben.conde@polifemo:~$ top abre como un administrador de tareas
+- ruben.conde@polifemo:~$ kill -9  52093 elimina un proceso
+- ruben.conde@polifemo:~$ head prac1/solp1.txt muestra las 10 primeras lineas
+- ruben.conde@polifemo:~$ write lucia.zamudio inicia una conexion con otro usuario
+- ruben.conde@polifemo:~$ mesg n deniega la entrada de mensajes
+- ruben.conde@polifemo:~$ mesg y acepta la entrada de mensajes
+  
+### Permisos
+#### Usuarios
+- **u** user/usuario/propietario
+- **g** grupo de usuarios al que pertenezaca el propietario
+- **o** todos aquellos que no pertenezcan al grupo de usuario
+#### Acceso
+- **r** read/lectura
+- **w** write/escritura
+- **x** execution/ejecucion
