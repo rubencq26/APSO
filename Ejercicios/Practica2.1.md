@@ -83,7 +83,6 @@ Mueva y renombre el fichero `f2.txt` del directorio `tmp1` al directorio `tmp2` 
 
 ```bash
 ruben.conde@polifemo:~/prac2/prac21$ mv tmp1/f2.txt ../prac23/tmp2/f23.txt
-
 ```
 
 ---
@@ -92,7 +91,8 @@ ruben.conde@polifemo:~/prac2/prac21$ mv tmp1/f2.txt ../prac23/tmp2/f23.txt
 Muévase con un solo comando al directorio `tmp2` sin usar rutas absolutas. Busque con el comando `find` los directorios que cuelgan de su directorio personal cuyo segundo carácter sea una `r` o una `t` (tanto en mayúsculas como en minúsculas), su penúltimo carácter no sea un número y su último carácter sea un número.
 
 ```bash
-# Escribe aquí la solución al ejercicio 7
+ruben.conde@polifemo:~/prac2/prac21$ cd ../prac23/tmp2/
+ruben.conde@polifemo:~/prac2/prac23/tmp2$ find /home/ruben.conde/ -name ?[rtRT]*[^1234567890][1234567890] -type d
 ```
 
 ---
@@ -101,7 +101,7 @@ Muévase con un solo comando al directorio `tmp2` sin usar rutas absolutas. Busq
 Busque los ficheros que no sean directorios (pueden ser de cualquier otro tipo) y que cuelguen de su directorio personal, que sean más nuevos que el fichero `solpl.txt` que se encuentra en su directorio `prac1` y que hayan sido modificados hace menos de 3 días. Use rutas absolutas en todo momento.
 
 ```bash
-# Escribe aquí la solución al ejercicio 8
+ruben.conde@polifemo:~/prac2/prac23/tmp2$ find /home/ruben.conde/ -type f -newer /home/ruben.conde/prac1/solp1.txt  -mtime -3
 ```
 
 ---
@@ -110,7 +110,7 @@ Busque los ficheros que no sean directorios (pueden ser de cualquier otro tipo) 
 Consulte con el comando `grep` dónde aparecen en los ficheros `f1.txt` y `f2.txt` del directorio `prac2` los caracteres "llama", sea en mayúscula o en minúscula (con un solo comando). Debe aparecer 5 veces en `f1.txt` y 6 veces en `f2.txt` para estar correcto.
 
 ```bash
-# Escribe aquí la solución al ejercicio 9
+ruben.conde@polifemo:~/prac2/prac23/tmp2$ grep -i "llama" /home/ruben.conde/prac2/f[12].txt
 ```
 
 ---
@@ -119,7 +119,11 @@ Consulte con el comando `grep` dónde aparecen en los ficheros `f1.txt` y `f2.tx
 ¿Cuántos bytes ocupa el fichero `f21.txt`? Indique dos comandos distintos con los que pueda averiguar el tamaño en bytes de un fichero.
 
 ```bash
-# Escribe aquí la solución al ejercicio 10
+ruben.conde@polifemo:~/prac2/prac23/tmp2$ wc -c /home/ruben.conde/prac2/prac21/tmp1/f21.txt
+1499 /home/ruben.conde/prac2/prac21/tmp1/f21.txt
+
+ruben.conde@polifemo:~/prac2/prac23/tmp2$ ls -l /home/ruben.conde/prac2/prac21/tmp1/f21.txt
+-rwxr----- 1 ruben.conde users 1499 feb 27 12:04 /home/ruben.conde/prac2/prac21/tmp1/f21.txt
 ```
 
 ---
@@ -128,7 +132,14 @@ Consulte con el comando `grep` dónde aparecen en los ficheros `f1.txt` y `f2.tx
 Consulte en qué día de la semana se fundó la Universidad de Huelva (1 de Julio de 1993) con el comando `cal`. (Nota: consulte sólo el mes y averigüe el día de la semana que es).
 
 ```bash
-# Escribe aquí la solución al ejercicio 11
+ruben.conde@polifemo:~/prac2/prac23/tmp2$ cal 7 1993
+     Julio 1993
+do lu ma mi ju vi sá
+             1  2  3
+ 4  5  6  7  8  9 10
+11 12 13 14 15 16 17
+18 19 20 21 22 23 24
+25 26 27 28 29 30 31
 ```
 
 ---
@@ -142,7 +153,8 @@ Ha sido un placer.
 ```
 
 ```bash
-# Escribe aquí la solución al ejercicio 12
+ruben.conde@polifemo:~/prac2/prac23/tmp2$ echo "Bienvenido. Son las $(date +"%H") horas y $(date +"%M") minutos del $(date +"%A") $(date +"%d") de $(date +"%B"). Ha sido un placer"
+Bienvenido. Son las 14 horas y 55 minutos del lunes 03 de marzo. Ha sido un placer
 ```
 
 ---
@@ -151,7 +163,8 @@ Ha sido un placer.
 Muévase a su directorio personal. Ordene el fichero `usuarios04-05.txt` que se encuentra en el directorio `/home/so/velez/MI` de menor a mayor y guarde el fichero resultante en el directorio `prac22` con el nombre `usu.orden.pabajo`. Haga lo mismo pero ordenando de mayor a menor y guarde el resultado en el directorio `prac22` con el nombre `usu.orden.parriba`.
 
 ```bash
-# Escribe aquí la solución al ejercicio 13
+ruben.conde@polifemo:~$ sort /home/so/velez/MI/usuarios04-05.txt > prac2/prac22/usu.orden.pabajo
+ruben.conde@polifemo:~$ sort -r /home/so/velez/MI/usuarios04-05.txt > prac2/prac22/usu.orden.parriba
 ```
 
 ---
@@ -160,7 +173,8 @@ Muévase a su directorio personal. Ordene el fichero `usuarios04-05.txt` que se 
 Visualice el fichero `fi.txt`. Visualice las 2 últimas líneas del fichero `solf1.txt` que se encuentra en el directorio `/home/so/velez/MI` para ver la solución al enigma.
 
 ```bash
-# Escribe aquí la solución al ejercicio 14
+ruben.conde@polifemo:~$ cat /home/so/velez/MI/f1.txt
+ruben.conde@polifemo:~$ tail -n 2 /home/so/velez/MI/solf1.txt
 ```
 
 ---
