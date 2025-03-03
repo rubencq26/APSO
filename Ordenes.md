@@ -47,9 +47,11 @@ rwxrwxrwx 111 100 100 744
 - ruben.conde@polifemo:~$ top abre como un administrador de tareas
 - ruben.conde@polifemo:~$ kill -9  52093 elimina un proceso
 - ruben.conde@polifemo:~$ head prac1/solp1.txt muestra las 10 primeras lineas
+- ruben.conde@polifemo:~$ tail -n 2 /home/so/velez/MI/solf1.txt muestra las 2 ultimas lineas
 - ruben.conde@polifemo:~$ write lucia.zamudio inicia una conexion con otro usuario
 - ruben.conde@polifemo:~$ mesg n deniega la entrada de mensajes
 - ruben.conde@polifemo:~$ mesg y acepta la entrada de mensajes
+- 
   
 ### Permisos
 #### Usuarios
