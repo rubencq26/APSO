@@ -183,7 +183,8 @@ ruben.conde@polifemo:~$ tail -n 2 /home/so/velez/MI/solf1.txt
 Muévase al directorio `prac2`. Visualice el número de caracteres del fichero `f23.txt` del directorio `tmp2`.
 
 ```bash
-# Escribe aquí la solución al ejercicio 15
+ruben.conde@polifemo:~/prac2$ wc -m prac23/tmp2/f23.txt
+8384 prac23/tmp2/f23.txt
 ```
 
 ---
@@ -192,7 +193,7 @@ Muévase al directorio `prac2`. Visualice el número de caracteres del fichero `
 Cree un enlace (hard link) llamado `solucionprac1` en el directorio `prac2` que se corresponda con el fichero `solp1.txt` del directorio `prac1`.
 
 ```bash
-# Escribe aquí la solución al ejercicio 16
+ruben.conde@polifemo:~/prac2$ ln ../prac1/solp1.txt solucionprac1
 ```
 
 ---
@@ -201,7 +202,7 @@ Cree un enlace (hard link) llamado `solucionprac1` en el directorio `prac2` que 
 Cree un enlace simbólico (soft link) llamado `temporal` en el directorio `prac2` que apunte al directorio `tmp2` del directorio `prac23`.
 
 ```bash
-# Escribe aquí la solución al ejercicio 17
+ruben.conde@polifemo:~/prac2$ ln -s prac23/tmp2/ temporal
 ```
 
 ---
@@ -210,7 +211,11 @@ Cree un enlace simbólico (soft link) llamado `temporal` en el directorio `prac2
 Usando el comando `file`, averigüe de qué tipo son los ficheros `solucionprac1` y `temporal`.
 
 ```bash
-# Escribe aquí la solución al ejercicio 18
+ruben.conde@polifemo:~/prac2$ file solucionprac1
+solucionprac1: UTF-8 Unicode text, with CRLF, LF line terminators
+
+ruben.conde@polifemo:~/prac2$ file temporal
+temporal: symbolic link to prac23/tmp2/
 ```
 
 ---
@@ -219,7 +224,9 @@ Usando el comando `file`, averigüe de qué tipo son los ficheros `solucionprac1
 Usando el comando `who`, visualice sólo los nombres de todas las sesiones que hay actualmente abiertas en el sistema, y el número de sesiones abiertas. Se necesita una opción.
 
 ```bash
-# Escribe aquí la solución al ejercicio 19
+ruben.conde@polifemo:~/prac2$ who -q
+alejandro.hurtado1 natalia.canela ruben.conde oscar.ortega santiago.moreno1 pedro.pontiga714 pedro.pontiga714 lucia.zamudio natalia.canela adrian.colino adrian.colino adrian.colino elisamaria.munoz
+# users=13
 ```
 
 ---
@@ -228,7 +235,8 @@ Usando el comando `who`, visualice sólo los nombres de todas las sesiones que h
 Abra una nueva sesión. Edite con el editor `joe` un fichero con el nombre `inservible`. Averigüe con el comando `ps` el identificador del proceso `joe`. Mate al proceso `joe` con el comando `kill`.
 
 ```bash
-# Escribe aquí la solución al ejercicio 20
+ruben.conde@polifemo:~/prac2$ ps aux | grep joe
+ruben.conde@polifemo:~/prac2$ kill -9 60048
 ```
 
 ---
@@ -237,7 +245,7 @@ Abra una nueva sesión. Edite con el editor `joe` un fichero con el nombre `inse
 Escriba un mensaje con el comando `write` al usuario `velez` que tiene la sesión abierta a una hora más temprana.
 
 ```bash
-# Escribe aquí la solución al ejercicio 21
+ruben.conde@polifemo:~/prac2$ write velez
 ```
 
 ---
