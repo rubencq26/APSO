@@ -60,18 +60,13 @@ ruben.conde@polifemo:~$ find / -name "[aAeEiIoOuU0123456789][!0123456789]??.[pc]
 
 ```
 ---
-1. Cree con un solo comando el siguiente árbol de directorios a partir de su
-directorio personal con rutas relativas.
 
-```bash
-
-```
 ## Ejercicio 7
 
 Copie todos los ficheros que tenga a partir de su directorio personal que empiecen con el texto sol y tengan una p en su nombre en el directorio tmp2 del directorio prac32. Use para ello sustitución de comandos.
 
 ```bash
-
+ruben.conde@polifemo:~$ cp $(find ~ -type f -name "sol*p*") /home/ruben.conde/prac3/prac32/tmp2/
 ```
 ---
 
@@ -80,7 +75,8 @@ Copie todos los ficheros que tenga a partir de su directorio personal que empiec
 Muévase al directorio prac33. Mueva todos los ficheros que a partir de su directorio personal terminan en ~ al directorio tmp3. Borre del directorio tmp3 todos los ficheros que terminan en ~. (Asegúrese antes que sólo tiene ficheros que terminan en ese carácter - Alt+126).
 
 ```bash
-
+ruben.conde@polifemo:~$ cd prac3/prac33
+ruben.conde@polifemo:~/prac3/prac33$ mv $(find ~ -type f -name "*~") tmp3/
 ```
 ---
 
@@ -89,7 +85,11 @@ Muévase al directorio prac33. Mueva todos los ficheros que a partir de su direc
 Muévase al directorio prac3 con rutas relativas. Cree con el comando cal, y tras ejecutarlo 4 veces, un fichero llamado 2_cuatrimestre en el directorio prac32 con el calendario de los meses de marzo, abril, mayo y junio de este año.
 
 ```bash
-
+ruben.conde@polifemo:~/prac3/prac33$ cd ..
+ruben.conde@polifemo:~/prac3$ cal 3 2025 1> prac32/calendario.txt
+ruben.conde@polifemo:~/prac3$ cal 4 2025 1>> prac32/calendario.txt
+ruben.conde@polifemo:~/prac3$ cal 5 2025 1>> prac32/calendario.txt
+ruben.conde@polifemo:~/prac3$ cal 6 2025 1>> prac32/calendario.txt
 ```
 ---
 
@@ -107,7 +107,15 @@ Introduzca la siguiente lista por teclado mediante el comando sort de forma que 
 - granada
 
 ```bash
-
+ruben.conde@polifemo:~/prac3$ sort -r 1> prac32/ciudades.txt
+- cordoba
+- sevilla
+- huelva
+- almeria
+- cadiz
+- malaga
+- jaen
+- granada
 ```
 ---
 
@@ -116,7 +124,7 @@ Introduzca la siguiente lista por teclado mediante el comando sort de forma que 
 Cree un fichero llamado usuarios en el directorio prac32 con la lista de todos los directorios personales de los usuarios del sistema, ordenada alfabéticamente en orden ascendente y con una sola línea de comando (Para ello use el find con las opciones oportunas, el sort, tuberías y redirección)(Suponga que cada directorio del directorio /home es de un usuario del sistema)(Deben salir sólo los directorios y sólo su nombre -no la ruta- (se consigue con la opción -printf))(Cada directorio estará en una línea del fichero)(No hay que adentrarse en las carpetas de cada usuario (opción -maxdepth)).
 
 ```bash
-
+ruben.conde@polifemo:~/prac3$ find /home -type d -printf "%f\n" -maxdepth 1 | sort 1> prac32/usuarios.txt
 ```
 ---
 
@@ -125,5 +133,8 @@ Cree un fichero llamado usuarios en el directorio prac32 con la lista de todos l
 Cree en el directorio prac32 un fichero llamado personal que contenga 4 líneas con la siguiente información: nombre de usuario, identificador de usuario, nombre de grupo, identificador de grupo. No está permitido usar ningún editor de textos para crear este fichero. (Hay que ejecutar 4 veces el comando id).
 
 ```bash
-
+ruben.conde@polifemo:~/prac3$ id -un > prac32/personal.txt
+ruben.conde@polifemo:~/prac3$ id -u >> prac32/personal.txt
+ruben.conde@polifemo:~/prac3$ id -gn >> prac32/personal.txt
+ruben.conde@polifemo:~/prac3$ id -g >> prac32/personal.txt
 ```
