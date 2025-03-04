@@ -68,7 +68,10 @@ rwxrwxrwx 111 100 100 744
 ### Sustitucion
 - **$ cat $(find ~ -type f -name "*.txt" -mmin -100 2> /dev/null)** ejecuta una orden sobre la salida de otra orden
 - **$ rm $(find /home -mmin -60 -user ruben.conde -name "[!.]*" -type f  2> /dev/null)**
-
+### Ejecucion en segundo plano
+- **$ orden &** pone en segundo plano lo que ejecutes
+- **$ jobs** muestra los procesos activos
+- **$ fg 1** pasa el proceso activos a primer plano
 
   
 ### Permisos
