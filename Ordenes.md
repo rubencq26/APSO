@@ -51,7 +51,25 @@ rwxrwxrwx 111 100 100 744
 - ruben.conde@polifemo:~$ write lucia.zamudio inicia una conexion con otro usuario
 - ruben.conde@polifemo:~$ mesg n deniega la entrada de mensajes
 - ruben.conde@polifemo:~$ mesg y acepta la entrada de mensajes
-- 
+
+## Clase 3
+### Redireccion
+- Redireccion, en vez de sacar los errores en una pantalla los saca en un fichero **$ orden 2> ./errores.txt**
+-  Para sacar la salida normal sin errores tan solo hay que poner **$ orden 1> ./errores.txt**
+-  Para sacar la salida normal con y sin errores hay que poner **$ orden &> ./errores.txt**
+-  Para que no salga por pantalla los errores **$ orden 2> /dev/null**
+-  Para que la redirección no sobrescriba la pantalla sino que la concatene se poner **$ orden >> fichero.txt**
+-  Para ejecutar un fichero solo hay que escribir la ruta **$ $ /home/so/ficheros/selecciona**
+-  **$ /home/so/ficheros/selecciona < uno.txt** asi en vez de pedir entrada por teclado,solo usa de entrada el contenido del fichero
+-  **$ cat >> entrada.txt** forma rapida de añadir texto a un fichero sin editor
+### Tuberias
+- **ruben.conde@polifemo:~$ who | grep jesus** mete la primera orden en un archivo temporal para ajecutar en el la segunda orden obligatoriamente la segunda orden debe manipular el contenido de un archivo
+- **ruben.conde@polifemo:~$ who | grep jesus | wc -l** puedes poner cuantas tuberias quieras
+### Sustitucion
+- **$ cat $(find ~ -type f -name "*.txt" -mmin -100 2> /dev/null)** ejecuta una orden sobre la salida de otra orden
+- **$ rm $(find /home -mmin -60 -user ruben.conde -name "[!.]*" -type f  2> /dev/null)**
+
+
   
 ### Permisos
 #### Usuarios
