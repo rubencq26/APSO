@@ -4,18 +4,19 @@
 ## Ejercicio 1
 Muestre por pantalla el texto "Practica 3: Manejo de Shell – Inicio…"
 ```bash
-
+ruben.conde@polifemo:~$ echo "Practica 3: Manejo de Shell – Inicio…"
 ```
 
 ## Ejercicio 2
 Cree un directorio llamado Practica3 dentro de ModuloI. Acceda dentro del directorio ModuloI.
 ```bash
-
+ruben.conde@polifemo:~$ mkdir ModuloI/Practica3
+ruben.conde@polifemo:~$ cd ModuloI/
 ```
 ## Ejercicio 3
 Use la orden find para visualizar los nombres y los tamaños de todos los ficheros (sólo los ficheros) que cuelguen de su directorio de usuario y cuyo tamaño sea inferior a 100 caracteres. Sólo deben aparecer los nombres de ficheros (sin la ruta) y los tamaños.
 ```bash
-
+ruben.conde@polifemo:~/ModuloI$ find ~ -printf "%f   %b\n"  -size -100c -type f
 ```
 ## Ejercicio 4
 Copie el fichero /home/so/ficheros/infinito al directorio Practica3.
