@@ -83,3 +83,25 @@ rwxrwxrwx 111 100 100 744
 - **r** read/lectura
 - **w** write/escritura
 - **x** execution/ejecucion
+
+## Clase 4
+- **ruben.conde@polifemo:~$ set -o** muestra las opciones
+- **ruben.conde@polifemo:~$ set -o noglob** enciende la opcion que no funcionen los caracteres globales
+- **ruben.conde@polifemo:~$ set +o noglob** apaga la opcion noglob
+- **ruben.conde@polifemo:~$ set -o verbose** cada comando que se ejecuta se imprime en pantalla
+- **ruben.conde@polifemo:~$ set -o xtrace** lo mismo que verbose pero con mas informacion dando la orden ta cual el la ejecuta
+- **ruben.conde@polifemo:~$ sh** abre una shell sh
+- **ruben.conde@polifemo:~$ csh** abre un nuevo shell csh
+- **ruben.conde@polifemo:~$ alias creadir="mkdir"** puedo crear comandos, que hagan otros comandos
+- **ruben.conde@polifemo:~$ unalias creadir** borro el alias
+- **ruben.conde@polifemo:~$ V1="MENSAJE 1"** crea una variable V1
+- **ruben.conde@polifemo:~$ echo $V1** muestra el contenido de una variable
+- **ruben.conde@polifemo:~$ unset V1** borra la variable V1
+- **ruben.conde@polifemo:~$ which bash** me doice el directorio en el que se encuentra un ejecutable
+- **ruben.conde@polifemo:~$ echo $HOME** muestra la rutade tu directorio de usuario
+- para cambiar el login hay que modificar el fichero.profile
+- para una shell nueca el .bashrc
+
+
+
+
