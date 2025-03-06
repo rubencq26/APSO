@@ -1,6 +1,9 @@
 ## Ejercicio 1
 Cree con un solo comando el siguiente árbol de directorios a partir de su directorio personal.
+![imagen](https://github.com/user-attachments/assets/15feb20b-63e2-4e06-966c-3d956d18fd8e)
+
 ```bash
+ruben.conde@polifemo:~$ mkdir -p prac4/prac41 prac4/prac42/tmp1/tmp2 prac4/prac43
 
 ```
 ---
@@ -8,6 +11,8 @@ Cree con un solo comando el siguiente árbol de directorios a partir de su direc
 ## Ejercicio 2
 Muévase al directorio prac43. Quite todo tipo de permisos para el grupo y el resto de los grupos al directorio prac4, prac42, tmp1 y tmp2 con un sólo comando y usando rutas relativas.
 ```bash
+ruben.conde@polifemo:~$ cd prac4/prac42
+ruben.conde@polifemo:~/prac4/prac42$ chmod 700 ~/prac4 ~/prac4/prac4? ~/prac4/prac42/tmp1 ~/prac4/prac42/tmp1/tmp2
 
 ```
 ---
@@ -15,6 +20,11 @@ Muévase al directorio prac43. Quite todo tipo de permisos para el grupo y el re
 ## Ejercicio 3
 Muévase al directorio prac42. Cree con el cat un fichero en el directorio tmp1 que se llame prueba y contenga la frase "Este es un fichero de prueba". Añada con el comando cat una nueva frase al fichero sin borrar la anterior que diga "Esta frase se ha añadido después".
 ```bash
+ruben.conde@polifemo:~/prac4/prac42$ cat > tmp1/prueba
+Este es un fichero de prueba
+ruben.conde@polifemo:~/prac4/prac42$ cat >> tmp1/prueba 
+Esta frase se ha añadido despues que la anterior
+
 
 ```
 ---
@@ -22,6 +32,8 @@ Muévase al directorio prac42. Cree con el cat un fichero en el directorio tmp1 
 ## Ejercicio 4
 Visualice el contenido de las primeras 52 variables del sistema. Muestre por pantalla el contenido de la variable PATH (sólo esa variable).
 ```bash
+ruben.conde@polifemo:~/prac4/prac42$ set | head -52
+ruben.conde@polifemo:~/prac4/prac42$ echo $PATH
 
 ```
 ---
@@ -29,6 +41,9 @@ Visualice el contenido de las primeras 52 variables del sistema. Muestre por pan
 ## Ejercicio 5
 Cree una variable llamada ORIGEN que contenga la ruta absoluta al directorio /home/so/velez/MI. Cree dos variables llamadas DESTINO1 y DESTINO2 con la ruta absoluta al directorio tmp1 y tmp2 respectivamente del directorio prac42. Visualice el contenido de estas dos variables (sólo de estas dos). Use las variables ORIGEN y DESTINO1 para copiar todos los ficheros del directorio /home/so/velez/MI que contienen una p en su nombre y terminan en .txt al directorio tmp1 de prac42.
 ```bash
+ruben.conde@polifemo:~/prac4/prac42$ ORIGEN=/home/so/velez/MI
+ruben.conde@polifemo:~/prac4/prac42$ DESTINO1=/home/ruben.conde/prac4/prac42/tmp1
+ruben.conde@polifemo:~/prac4/prac42$ DESTINO2=/home/ruben.conde/prac4/prac42/tmp1/tmp2
 
 ```
 ---
