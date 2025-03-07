@@ -44,13 +44,15 @@ Cree una variable llamada ORIGEN que contenga la ruta absoluta al directorio /ho
 ruben.conde@polifemo:~/prac4/prac42$ ORIGEN=/home/so/velez/MI
 ruben.conde@polifemo:~/prac4/prac42$ DESTINO1=/home/ruben.conde/prac4/prac42/tmp1
 ruben.conde@polifemo:~/prac4/prac42$ DESTINO2=/home/ruben.conde/prac4/prac42/tmp1/tmp2
-
+ruben.conde@polifemo:~/prac4/prac42$ cp $ORIGEN/p*.txt $DESTINO1
 ```
 ---
 
 ## Ejercicio 6
 Muévase al directorio prac43 con rutas relativas. Cree un alias llamado fnuevos que busque los ficheros (no directorios) a partir de su directorio personal a los que se haya accedido hace menos de 3 horas, empiecen por punto y terminen en e, y o c y visualice su contenido uno a uno.
 ```bash
+ruben.conde@polifemo:~/prac4/prac42$ cd ../prac43
+ruben.conde@polifemo:~/prac4/prac43$ alias fnuevos="cat $(find /home/ruben.conde/ -name ".*[eyc]" -amin -180)"
 
 ```
 ---
@@ -58,7 +60,9 @@ Muévase al directorio prac43 con rutas relativas. Cree un alias llamado fnuevos
 ## Ejercicio 7
 
 Visualice todos los alias del sistema. Cree cinco nuevos alias:
-
+  ```bash
+  ruben.conde@polifemo:~/prac4/prac43$ alias
+  ```
 - Uno se llamará dir y visualizará página a página todos los ficheros del directorio en el que está (incluso los que empiezan por punto), con todos los permisos en orden alfabético.
   ```bash
 
