@@ -88,49 +88,59 @@ ruben.conde@polifemo:~$ alias cd..="cd .."
 ## Ejercicio 8
 Cree un fichero llamado usuarios en el directorio tmp2 con la lista de todas las sesiones que hay abiertas en este instante ordenadas alfabéticamente. Use rutas relativas.
 ```bash
-
+  ruben.conde@polifemo:~/prac4/prac42$ who | sort > tmp1/tmp2/usuarios
 ```
 ---
 
 ## Ejercicio 9
 Muévase al directorio prac4. Ejecute el interprete de comandos ksh. Visualice las variables activas en este interprete de comandos. Modifique el prompt para que visualice la frase "Comando::>".
 ```bash
-
+ruben.conde@polifemo:~/prac4/prac42$ ksh
+~/prac4/prac42 [5]$ set
+~/prac4/prac42 [6]$ PS1="Comando::>"
 ```
 ---
 
 ## Ejercicio 10
 Salga del interprete de comandos ksh y vuelva al bash. Cuente con la ayuda del who y del wc el número de sesiones que hay abiertas (debe salir un número).
 ```bash
-
+Comando::>exit
+ruben.conde@polifemo:~/prac4/prac42$ who | wc -l
 ```
 ---
 
 ## Ejercicio 11
 Modifique el prompt principal para que visualice su nombre de usuario en vez del nombre de la máquina. A continuación el directorio donde está mediante ruta absoluta y al final debe aparecer el símbolo ">" (Ejemplo: Para el usuario velez actualmente sale velez@Polifemo:~/prac4$. Después de modificar el prompt debe salir velez: /home/velez/prac4>).
 ```bash
-
+[ruben.conde@polifemo:~/prac4$PS1="ruben.conde>"
+PS1="\u $pwd"
 ```
 ---
 
 ## Ejercicio 12
 Modifique el prompt secundario para que emita el siguiente mensaje: "cierre las comillas, por favor".
 ```bash
-
+ruben.conde@polifemo:~$ PS2="cierre las comillas, por favor"
 ```
 ---
 
 ## Ejercicio 13
 Edite con el joe el fichero .profile. Modifique la variable PATH para que siempre se ejecuten los ficheros que se encuentran en el directorio actual. Añada la variable ORIGEN creada en el apartado 5 para que se pueda usar siempre que entre en una nueva sesión.
 ```bash
-
+PATH=$PATH:.
+ORIGEN="/home/so/velez/MI"
+export ORIGEN
 ```
 ---
 
 ## Ejercicio 14
 Cierre la sesión. Vuelva a entrar. Añada los alias hora y fecha al .profile para que siempre se puedan ejecutar. Haga lo necesario para que los alias introducidos en el .profile se vuelvan activos y puedan ser usados.
 ```bash
+alias hora="echo Son las $(date +%"H") horas y $(date +%"m") minutos. Chao"
+export hora
 
+alias fecha="echo Hoy es $(date +%"A"), $(date +"%d") de $(date +%"B") de $(date +%"Y"). Chao"
+export fecha
 ```
 ---
 
