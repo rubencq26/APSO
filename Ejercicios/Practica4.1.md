@@ -65,23 +65,23 @@ Visualice todos los alias del sistema. Cree cinco nuevos alias:
   ```
 - Uno se llamará dir y visualizará página a página todos los ficheros del directorio en el que está (incluso los que empiezan por punto), con todos los permisos en orden alfabético.
   ```bash
-
+  ruben.conde@polifemo:~$ alias dir="ls -la | grep "^-rwxrwxrwx" | sort | more"
   ```
 - dirinverso hará lo mismo pero saldrán ordenados en orden inverso.
   ```bash
-
+  ruben.conde@polifemo:~$ alias dir="ls -la | grep "^-rwxrwxrwx" | sort -r | more"
   ```
 - Otro se llamará fecha y visualizará la fecha con el siguiente formato: "Hoy es <día de la semana>, <día del mes> de <mes> de <año>. Chao".
   ```bash
-
+  ruben.conde@polifemo:~$ alias fecha="echo Hoy es $(date +%"A"), $(date +"%d") de $(date +%"B") de $(date +%"Y"). Chao"
   ```
 - El otro se llamará hora y visualizará la hora con el siguiente formato: "Son las <hora> horas y <minuto> minutos. Chao".
   ```bash
-
+  ruben.conde@polifemo:~$ alias hora="echo Son las $(date +%"H") horas y $(date +%"m") minutos. Chao"
   ```
 - El último debe conseguir que cuando ejecute cd.. (sin el espacio en blanco entre el cd y los dos puntos) no produzca error.
 ```bash
-
+ruben.conde@polifemo:~$ alias cd..="cd .."
 ```
 ---
 
