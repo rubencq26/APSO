@@ -151,8 +151,9 @@ $0 -> nombre del archivo ejecutado
 
 ### Ejercicio 1
 1. Cree con un solo comando el siguiente árbol de directorios a partir de su directorio personal mediante rutas absolutas.
+2. ![image](https://github.com/user-attachments/assets/7c7fa3b2-a13a-4b2e-9518-38bb97c398df)
 ```bash
-
+ruben.conde@polifemo:~$ mkdir -p /home/ruben.conde/prac5/prac51 /home/ruben.conde/prac5/prac52 /home/ruben.conde/prac5/guiones
 ```
 
 ### Ejercicio 2
@@ -165,7 +166,11 @@ IMPORTANTE!!! No continúe adelante si no ha conseguido añadir esa nueva ruta a
 ### Ejercicio 3
 3. Muévase al directorio guiones. Cree un guión llamado busca en este directorio que reciba como parámetros un directorio y un número. El guión debe buscar los ficheros (no directorios) a partir del directorio especificado que hayan sido modificados hace menos de n días, siendo n el número de días especificado. Muévase de nuevo a su directorio personal. Ejecute desde aquí el guión pasando como parámetros su directorio personal y el número 10.
 ```bash
-
+ruben.conde@polifemo:~$ cd prac5/guiones/
+find $1 -type f -mtime -$2 -maxdepth 1
+ruben.conde@polifemo:~$ cd
+ruben.conde@polifemo:~$ chmod 777 prac5/guiones/busca
+ruben.conde@polifemo:~$ ./prac5/guiones/busca /home/ruben.conde 10
 ```
 
 ### Ejercicio 4
@@ -174,7 +179,9 @@ Otro se llamará gente y contará los usuarios que actualmente se encuentran en 
 Otro se llamará saludo y visualizará el siguiente mensaje: Hola. Son las <hora> horas y <minuto> minutos del <día de la semana en letras> <día del mes> de <mes> de <año>. Chao.
 HAGA QUE TOMEN EFECTO
 ```bash
-
+alias listaf="ls $(find /home/ruben.conde -type df 2> /dev/null ) -l"
+alias gente="who | wc -l"
+alias saludo="echo Hola. Son las $(date +%"H") horas y $(date +%"m") minutos del $(date +%"A") $(date +%"d") $(date +%"B") de $(date +%"Y"). Chao"
 ```
 
 ### Ejercicio 5
