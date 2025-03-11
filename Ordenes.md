@@ -102,6 +102,19 @@ rwxrwxrwx 111 100 100 744
 - para cambiar el login hay que modificar el fichero.profile
 - para una shell nueca el .bashrc
 
+## Clase 5
+- $ sirve para nombrar variables y hacer sustituciones
+- ` sirve para lo mismo que el $
+- \ elmina el uso de los caracteres especiales \$ \`
+- " todo lo que este entre dos comillas los interpreta como una cadena menos los carcateres $ ` \ que mantienen su funcion
+- ' TODO es una cadena de caracteres y los literales dejan de funcionar
+- **file archivo** te permite ver de que tipo es un archivo
+- para crear un script en la cabeceradel archivo se escribe **#!/bin/bash**
+- **read algo** me permite introducir por teclado texto en la variable algo
+- **export variable** permite que una variable pueda ser usada en guiones
+- **source ./g2** permite que las variables que se creen dentro del guion existan fuera de el es equivalente a poner **. ./g2**
+- **./g2 7 9** dentro del script pones $1 se sustituye por 7 y $2 por 9 y asi sucesivamente $# te devuelve la cantidad de parametros pasados y $* la lista de todos los parametros pasados $0 devuelve donde se esta ejecutando
+- 
 
 
 
