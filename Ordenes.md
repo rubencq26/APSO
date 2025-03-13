@@ -200,6 +200,14 @@ case $OPCION in
 ```
 ### For
 Permite ejecutar una secuencia de comandos varias veces, y en cada una de ellas asigna un valor a una variable, tomado de un conjunto de posibles valores.
+
+**break**: permite romper el bucle, de manera que la ejecución continúa por la
+instrucción inmediatamente posterior al done más interno (igual que el break de C).
+
+**continue:** permite iniciar la siguiente iteración de forma inmediata (sin necesidad
+de llegar al done), de forma que el próximo comando que se ejecuta es la
+asignación de un nuevo valor a la variable de control (igual que el continue de C).
+
 ```bash
 #!/bin/bash
 # Ejemplo de uso del for
