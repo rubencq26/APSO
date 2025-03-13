@@ -1,5 +1,6 @@
-```markdown
+
 # Ejercicios
+\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$
 
 ```bash
 
@@ -9,12 +10,15 @@
 ![image](https://github.com/user-attachments/assets/65f7090d-c3e8-4560-8c43-1fdb454ae85b)
 
 ```bash
+ruben.conde@polifemo:~$ mkdir -p prac6/prac6 prac6/fuentes/tmp1/tmp2 prac6/guiones
 
 ```
 ## Ejercicio 2
 ### Incluya dentro del fichero .profile la variable GUION con la ruta al directorio guiones creado anteriormente. Haga que tome efecto esta variable. Copie todos los ficheros que a partir de su directorio personal terminen en .txt en el directorio tmp1.
-
+```markdown
 ```bash
+GUION="/home/ruben.conde/prac6"
+ruben.conde@polifemo:~$ . ./.profile
 
 ```
 ## Ejercicio 3
@@ -50,7 +54,7 @@ Tercer parámetro: directorio fuentes creado en el apartado 1
 
 ```
 ## Ejercicio 6
-### Cree un guión llamado mtam que muestre, para cada fichero encontrado a partir del directorio pasado como primer parámetro cuyo nombre coincide con el segundo parámetro, su tamaño. Compruebe que el número de parámetros es el correcto y que el primero es un directorio. (Usa el for en el guión).
+### Cree un guión llamado mtam que muestre, para cada fichero encontrado a partir del directorio pasado como primer parámetro ```markdowncuyo nombre coincide con el segundo parámetro, su tamaño. Compruebe que el número de parámetros es el correcto y que el primero es un directorio. (Usa el for en el guión).
 Ejecútelo con los parámetros siguientes:
 Primer parámetro: directorio fuentes creado anteriormente.
 Segundo parámetro: ficheros que empiecen por s y tengan un punto
