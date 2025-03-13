@@ -114,7 +114,151 @@ rwxrwxrwx 111 100 100 744
 - **export variable** permite que una variable pueda ser usada en guiones
 - **source ./g2** permite que las variables que se creen dentro del guion existan fuera de el es equivalente a poner **. ./g2**
 - **./g2 7 9** dentro del script pones $1 se sustituye por 7 y $2 por 9 y asi sucesivamente $# te devuelve la cantidad de parametros pasados y $* la lista de todos los parametros pasados $0 devuelve donde se esta ejecutando
-- 
+
+
+## Clase 6
+### if
+```bash
+#!/bin/bash
+
+# Ejemplo de if
+
+#if [ -d /home/so ]
+if test -d /home/so  ;then
+	echo "/home/so existe y es un directorio"
+elif test -f /home/so  
+then
+	echo "/home/so es un fichero"
+else
+	echo "/home/so no existe"
+fi
+```
+
+```bash
+#!/bin/bash
+
+# Ejemplo de if
+
+if [ -d $1 ]
+#if test -d $1 
+then
+	echo "El fichero $1 existe y es un directorio"
+elif test -f $1 ;then
+	echo "El fichero $1 es un fichero"
+else
+	echo "El fichero $1 no existe"
+fi
+
+```
+
+### Case
+```bash
+#!/bin/bash
+
+# Ejemplo de uso del case
+
+echo Introduce un nombre de fruta
+read FRUTA
+case $FRUTA in
+	pera) echo "La Fruta es una pera"
+		echo "¡¡ Que rica ...!!"
+	;;
+	melon) echo "La Fruta es un melon" 
+	;;
+	per*) echo "La Fruta es pera o pero" 
+	;;
+	*) echo Esto sale si no es ninguno de los anteriores 
+	;;
+esac
+
+```
+
+```bash
+#!/bin/bash
+# Ejemplo de uso del case
+echo OPCIONES
+echo --------
+echo L - listar información del fichero $1
+echo V - visualizar contenido del fichero $1
+echo E - editar fichero $1
+echo R - borrar fichero $1
+echo
+echo -n "Selecciona una opción: "
+read OPCION
+clear
+
+case $OPCION in
+ L) ls -l $1;;
+ E) joe $1;;
+ V) more $1;;
+ R) rm -f $1;;
+ l|e|r|a|v) echo Debes escribir la opción en mayúsculas.;;
+*) echo Esa opción no existe;;
+
+```
+### For
+```bash
+#!/bin/bash
+# Ejemplo de uso del for
+
+for i in 8 10 2 5 pepe
+do
+	echo "Esta es la iteracion para $i"
+	echo "Visualizo la iteracion +10 = $(($i+10))"
+done
+```
+
+```bash
+#!/bin/bash
+
+# Segundo ejemplo de uso de for
+
+for i in $(find / -name "e*")
+#for i in e*
+do
+	echo "El fichero $i comienza por e" 
+done
+```
+```bash
+#!/bin/bash
+# Ejemplo de uso del for
+
+for ((i=1; i<10; i++))
+#for ((i=1; i<10; i=$i+2))
+do
+	echo "Esta es la iteracion para $i"
+	echo "Visualizo la iteracion +10 = $(($i+10))"
+done
+```
+### While
+```bash
+#!/bin/bash
+
+NUM=1
+
+#while test $NUM -le 30
+while [ $NUM -le 5 ]
+do
+	echo "NUM vale $NUM"
+	NUM=$(($NUM+1))
+	# NUM=$(expr $NUM + 5)
+done
+
+```
+
+```bash
+#!/bin/bash
+
+NUM=1
+until [ $NUM -gt 5 ]
+do
+	echo "NUM vale $NUM"
+	NUM=$(($NUM + 1))
+	# NUM=$(expr $NUM + 5)
+done
+```
+
+
 
 
 
