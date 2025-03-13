@@ -20,18 +20,37 @@ ruben.conde@polifemo:~$ mkdir -p prac6/prac6 prac6/fuentes/tmp1/tmp2 prac6/guion
 ```bash
 GUION="/home/ruben.conde/prac6"
 ruben.conde@polifemo:~$ . ./.profile
+ruben.conde@polifemo:~/prac6/guiones$ cp $(find ~ -type f -name "*.txt") /home/ruben.conde/prac6/fuentes/tmp1
 
 ```
 ## Ejercicio 3
 ### Muévase al directorio guiones. Cree un guión en el directorio guiones llamado tratafichero. Este guión debe recoger un único parámetro. Si el parámetro es un fichero ordinario debe visualizar su contenido con el comando more. Si se trata de un directorio, se debe ver el contenido del mismo con el comando ls -la. Si no es ni un fichero ni un directorio debe hacerse un echo del parámetro. (Se necesita usar el comando test y la estructura if).
 
 ```bash
+ruben.conde@polifemo:~$ cd $GUION/guiones
+#!/bin/bash
+
+#!/bin/bash
+
+if [ -d $1 ]
+then
+        ls -la $1
+elif test -f $1
+then
+        more $1
+else
+        echo $1
+fi
+
 
 ```
 ## Ejercicio 4
 ### Muévase al directorio prac6 que está dentro de prac6. Ejecute desde aquí el guión anterior dos veces. La primera vez pásele como parámetro $HOME/prac2/f1.txt. La segunda pásele como parámetro la variable GUION creada en el apartado 2.
 
 ```bash
+ruben.conde@polifemo:~/prac6/guiones$ cd ../prac6/
+ruben.conde@polifemo:~/prac6/prac6$ ../guiones/tratafichero $HOME/prac2/f1.txt
+ruben.conde@polifemo:~/prac6/prac6$ ../guiones/tratafichero $GUION
 
 ```
 ## Ejercicio 5
@@ -52,7 +71,7 @@ Segundo parámetro: ficheros que empiecen por una letra mayúscula.
 Tercer parámetro: directorio fuentes creado en el apartado 1 
 
 ```bash
-
+ruben.conde@polifemo:~/prac6/prac6$ cd ../guiones/
 ```
 ## Ejercicio 6
 ### Cree un guión llamado mtam que muestre, para cada fichero encontrado a partir del directorio pasado como primer parámetro ```markdowncuyo nombre coincide con el segundo parámetro, su tamaño. Compruebe que el número de parámetros es el correcto y que el primero es un directorio. (Usa el for en el guión).
