@@ -118,6 +118,7 @@ rwxrwxrwx 111 100 100 744
 
 ## Clase 6
 ### if
+Permite bifurcar la ejecución de dos ramas alternativas, según el valor de una condición.
 ```bash
 #!/bin/bash
 
@@ -152,6 +153,7 @@ fi
 ```
 
 ### Case
+Permite bifurcar la ejecución entre varias ramas alternativas, según el valor de una expresión.
 ```bash
 #!/bin/bash
 
@@ -197,6 +199,7 @@ case $OPCION in
 
 ```
 ### For
+Permite ejecutar una secuencia de comandos varias veces, y en cada una de ellas asigna un valor a una variable, tomado de un conjunto de posibles valores.
 ```bash
 #!/bin/bash
 # Ejemplo de uso del for
@@ -231,6 +234,7 @@ do
 done
 ```
 ### While
+Permite repetir la ejecución de una secuencia de comandos mientras se dé una condición
 ```bash
 #!/bin/bash
 
@@ -246,6 +250,7 @@ done
 
 ```
 ### until
+Permite repetir la ejecución de una secuencia de comandos hasta que se dé una condición.
 ```bash
 #!/bin/bash
 
