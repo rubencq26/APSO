@@ -72,14 +72,38 @@ Tercer parámetro: directorio fuentes creado en el apartado 1
 
 ```bash
 ruben.conde@polifemo:~/prac6/prac6$ cd ../guiones/
+#!/bin/bash
+if [ $# != 3 ]
+then
+        echo Se necesitan almenos 3 parametro
+elif test ! -d $1 &  test ! -d $3 
+then
+        echo El primer y tercer parametro deben ser directorios
+else
+        find $1 -type l -name "$2" -printf "%f\n" 2> /dev/null 1> $3/enlaces.txt         
+fi 
+
 ```
 ## Ejercicio 6
-### Cree un guión llamado mtam que muestre, para cada fichero encontrado a partir del directorio pasado como primer parámetro ```markdowncuyo nombre coincide con el segundo parámetro, su tamaño. Compruebe que el número de parámetros es el correcto y que el primero es un directorio. (Usa el for en el guión).
+### Cree un guión llamado mtam que muestre, para cada fichero encontrado a partir del directorio pasado como primer parámetro cuyo nombre coincide con el segundo parámetro, su tamaño. Compruebe que el número de parámetros es el correcto y que el primero es un directorio. (Usa el for en el guión).
 Ejecútelo con los parámetros siguientes:
 Primer parámetro: directorio fuentes creado anteriormente.
 Segundo parámetro: ficheros que empiecen por s y tengan un punto
 en su nombre. 
 ```bash
+#!/bin/bash
+if [ $# != 2 ]
+then
+        echo se necesitan dos parametros
+elif [ ! -d $1 ]
+then
+        echo el primer parametro debe ser un directorio
+else
+        for i in $(find $1 -type f -name "$2" 2> /dev/null)
+        do
+                wc $i
+        done
+fi      
 
 ```
 ## Ejercicio 7
@@ -107,16 +131,38 @@ solicite.
 ### Muévase al directorio guiones. Cree un guión llamado opcion que lea una palabra del teclado. Si la palabra empieza por un número almacena la palabra al final de un fichero llamado numero, en un fichero llamado vocal si empieza por vocal y en un fichero llamado otro para cualquier otro caso. Use el case para decidir a que fichero va la palabra. Debe estar haciendo siempre lo mismo hasta que se pulse un punto, pero no debe parar si se introduce un punto seguido de cualquier otro conjunto de caracteres. 
 
 ```bash
+#!/bin/bash
+echo Introduce un numero
+read NUM
+PRIN=$(pwd)
+
+for((i=0; i<$NUM; i++))
+do
+ESTOY=$(pwd)
+
+mkdir -p $ESTOY/anidado$i
+
+cd $ESTOY/anidado$i
+
+done
+
+cd $PRIN
 
 ```
 ## Ejercicio 9
 ### Modifique los permisos de los directorios tmp1 y tmp2 para que el propietario tenga todos los permisos menos el de ejecución, el grupo solo el de lectura y los otros solo el de ejecución.
 
 ```bash
+ruben.conde@polifemo:~/prac6/fuentes/tmp1$ chmod 640 tmp2
+ruben.conde@polifemo:~/prac6/fuentes$ chmod 640 tmp1 
+
 
 ```
 ## Ejercicio 10
 ### Consulte el número de procesos total que tiene activos en este preciso momento (contando los de todas las ventanas abiertas). (Se usa ps y wc).
 ```bash
+ruben.conde@polifemo:~/prac6/guiones$ ps aux | grep ruben.c+ | wc -l
+7
+
 
 ```
