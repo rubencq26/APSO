@@ -74,7 +74,7 @@ Cree un script llamado **nprimeros.sh** que tome dos parámetros:
 ### Ejercicio 5
 Cree los directorios **largos** y **cortos** dentro de **Practica6**.
 ```bash
-
+ruben.conde@polifemo:~/ModuloI/Practica6$ mkdir ./largos ./cortos
 ```
 
 ### Ejercicio 6
@@ -86,7 +86,34 @@ Cree un script llamado **selector.sh** que tome una secuencia de parámetros.
   - Se debe usar un `case` dentro de un bucle `for`.
   - Analizar el comportamiento con enlaces simbólicos a ficheros de texto.
 ```bash
+#!/bin/bash
 
+for i in "$@"; do
+    # Buscar el archivo en el directorio actual
+    opcion=$(find "$(pwd)" -name "$i" -print -quit)  # Solo toma el primer resultado
+
+    if [[ -n "$opcion" ]]; then  # Verifica que se haya encontrado el archivo
+        # Obtener solo el nombre sin la ruta ni la extensión
+        nombre=$(basename "$opcion")
+        nombre_sin_ext="${nombre%.*}"  # Quita la extensión
+
+        # Obtener la longitud del nombre sin extensión
+        longitud=${#nombre_sin_ext}
+
+        if [ "$longitud" -gt 6 ]; then
+            respuesta="largo"
+        else
+            respuesta="corto"
+        fi
+
+        case $respuesta in
+            largo) cp "$opcion" /home/ruben.conde/ModuloI/Practica6/largos/ ;;
+            corto) cp "$opcion" /home/ruben.conde/ModuloI/Practica6/cortos/ ;;
+        esac
+    else
+        echo "El archivo '$i' no se encontró."
+    fi
+done
 ```
 
 ### Ejercicio 7
@@ -98,7 +125,31 @@ Cree un script llamado **replica.sh** que tome un parámetro y haga lo siguiente
 - Creará **tantos directorios anidados con el nombre del parámetro** como indique el número ingresado.  
   **Ejemplo:** Si se ejecuta `replica p1` y se ingresa `3`, se creará la estructura:
 ```bash
+#!/bin/bash
 
+if [ $# -ne 1 ]
+then
+        echo error no hay parametro
+else
+        echo Introduzca un numero entre el 2 y el 9
+        read num
+
+        if [ "$num" -gt 9 ]
+        then
+        num=9
+        elif [ "$num" -lt 2 ]
+        then
+        num=2
+        fi
+        posicion=$(pwd)
+        for((i=0; i<$num; i++))
+        do
+        estoy=$(pwd)
+        mkdir -p "$estoy/$1"
+        cd "$estoy/$1"
+        done
+        cd "$posicion"
+fi
 ```
 
 
@@ -109,6 +160,20 @@ Cree un script llamado **verdire.sh** que muestre continuamente el contenido de 
 - Si no se recibe parámetro, mostrará el contenido del **directorio de trabajo**.  
 - **Este script no finalizará automáticamente**, deberá ser interrumpido con `CTRL+C`.
 ```bash
+#!/bin/bash
+if [ $# -eq 0 ]
+then
+        directorio="/home/ruben.conde"
+else
+        directorio="$1"
+fi
+contador=0
+
+while [ $contador -lt 10 ]
+do
+        ls $directorio
+        sleep 1
+done
 
 ```
 ### Ejercicio 9
@@ -124,7 +189,39 @@ Cree un script llamado **reubicadoSelectivo.sh** que funcione de la siguiente ma
 - Si se mueve, se colocará en el **segundo directorio**.
 - Al final, se informará de cuántos ficheros fueron movidos.
 ```bash
+#!/bin/bash
+if [ $# -ne 2 ]
+then
+        echo numero de parametros incorrectos
+        exit 11
+elif [ ! -d "$1" ] || [ ! -d "$2" ]
+then
+        echo los parametros deben ser directorios validos
+        exit 21
+fi
 
+echo Introduce un caracter o un numero
+read -r car
+
+for i in $(find "$1" -maxdepth 1 -name "$car*" -type f)
+do
+        echo $(ls "$i")
+        tail -3 "$i"
+done
+
+echo "Se quiere mover (s/n)"
+read opcion
+
+if [ "$opcion" = "s" ]
+then
+        contador=0
+        for i in $(find "$1" -maxdepth 1 -name "$car*" -type f)
+        do
+        ((contador++))
+        mv $i $2
+        done
+        echo se han movido $contador ficheros
+fi
 ```
 ### Ejercicio 10
 Cree un script llamado **controlBucle.sh** que pruebe `break` y `continue` en los bucles `for`, `while` y `until`:
@@ -133,16 +230,77 @@ Cree un script llamado **controlBucle.sh** que pruebe `break` y `continue` en lo
 - No mostrará el número **6** (saltará con `continue`).
 - En la **penúltima iteración**, saltará directamente al final del bucle con `break`.
 ```bash
+#!/bin/bash
+
+# Verificar que haya un parámetro
+if [ "$#" -ne 1 ]; then
+    echo "Uso: $0 [for|while|until]"
+    exit 1
+fi
+
+opcion="$1"
+
+# Implementar el bucle según la opción elegida
+case "$opcion" in
+    "for")
+        echo "Ejecutando con for..."
+        for ((i = 1; i <= 10; i++)); do
+            if [ "$i" -eq 6 ]; then
+                continue  # Salta la iteración 6
+            elif [ "$i" -eq 9 ]; then
+                break  # Detiene antes de la última iteración
+            fi
+            echo "Valor: $i"
+        done
+        ;;
+    
+    "while")
+        echo "Ejecutando con while..."
+        i=1
+        while [ "$i" -le 10 ]; do
+            if [ "$i" -eq 6 ]; then
+                ((i++))
+                continue  # Salta la iteración 6
+            elif [ "$i" -eq 9 ]; then
+                break  # Detiene antes de la última iteración
+            fi
+            echo "Valor: $i"
+            ((i++))
+        done
+        ;;
+    
+    "until")
+        echo "Ejecutando con until..."
+        i=1
+        until [ "$i" -gt 10 ]; do
+            if [ "$i" -eq 6 ]; then
+                ((i++))
+                continue  # Salta la iteración 6
+            elif [ "$i" -eq 9 ]; then
+                break  # Detiene antes de la última iteración
+            fi
+            echo "Valor: $i"
+            ((i++))
+        done
+        ;;
+    
+    *)
+        echo "Error: Opción no válida. Usa 'for', 'while' o 'until'."
+        exit 2
+        ;;
+esac
+
+echo "Fin del script."
 
 ```
 ### Ejercicio 11
 Muestre por pantalla el mensaje:  
 **"Práctica 6: Scripts (Estructuras de Control) … Finalizada"**
 ```bash
-
+ruben.conde@polifemo:~/ModuloI/Practica6$ echo "Práctica 6: Scripts (Estructuras de Control) … Finalizada"
 ```
 ### Ejercicio 12
 Salga adecuadamente del sistema.
 ```bash
-
+ruben.conde@polifemo:~/ModuloI/Practica6$ exit
 ```
