@@ -4,13 +4,14 @@
 Muestre por pantalla el texto:  
 **"Practica 6: Scripts (Estructuras de Control) – Inicio…"**
 ```bash
-
+ruben.conde@polifemo:~$ echo "Practica 6: Scripts (Estructuras de Control) – Inicio…"
 ```
 
 ### Ejercicio 2
 Cree un directorio llamado **Practica6** dentro de **ModuloI** y sitúese en él.
 ```bash
-
+ruben.conde@polifemo:~$ mkdir -p ModuloI/Practica6
+ruben.conde@polifemo:~$ cd ModuloI/Practica6
 ```
 
 ### Ejercicio 3
@@ -21,7 +22,23 @@ En el directorio **Practica6**, cree un script llamado **miron** que tome un ún
 - Si es un **fichero ordinario**, mostrará su contenido con `more`.
 - Si no es ninguno de los anteriores, mostrará un mensaje de error con el valor del parámetro.
 ```bash
-
+#!/bin/bash
+if [ $# != 1 ]
+then
+        echo "Error de parametros"
+elif [ -d $1 ]
+then
+        ls -la $1
+elif [ -L $1 ]
+then
+        readlink -f $1
+        cat $1
+elif [ -f $1 ]
+then
+        more $1
+else
+        echo error $1
+fi
 ```
 
 ### Ejercicio 4
@@ -32,7 +49,26 @@ Cree un script llamado **nprimeros.sh** que tome dos parámetros:
   **"El nombre del fichero i es <<nombre del fichero>>"**  
   donde `i` representa el orden del fichero en el listado.  
 ```bash
+ #!/bin/bash
 
+ # Verifica que el primer argumento sea un directorio
+ if [ ! -d "$1" ]; then
+    echo "Error: El argumento no es un directorio."
+    exit 1
+ fi
+
+ contador=1
+
+ # Recorre los archivos en el directorio
+ for i in "$1"/*; do
+     echo "El nombre del fichero $contador es $(basename "$i")"
+
+    if [ "$contador" -eq "$2" ]; then
+        break  # Salir del bucle cuando se alcance el número indicado
+    fi
+
+    contador=$((contador + 1))  # Sumar correctamente
+  done
 ```
 
 ### Ejercicio 5
