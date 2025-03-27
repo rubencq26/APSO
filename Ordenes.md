@@ -271,6 +271,11 @@ do
 done
 ```
 
+## Clase 9
+rubencq@rubencq-Virtualbox:~$ lsb_release  -a nos muestra la version del sistema
+rubencq@rubencq-Virtualbox:~$ uname -a  nos muestra infromacion del equipo
+sudo su root te pones en el usuario root
+
 
 
 
