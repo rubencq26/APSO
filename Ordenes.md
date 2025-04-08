@@ -350,4 +350,14 @@ void vercoseno(int radianes){
 void vercoseno(int radianes);
 ```
 
+### Archivo makefile
+```makefile
+all: programa1 holamundoencpp
 
+holamundo: Practica1/programa1.c Practica1/funciones.c Practica1/funciones.holamundo
+	cc /Practica1/programa1.c Practica1/funciones.c -o programa1 -lm
+
+
+holamundoencpp: holamundoencpp.cpp
+	c++ holamundoencpp.cpp -o holamundoencpp
+```
