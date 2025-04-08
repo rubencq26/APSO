@@ -278,5 +278,72 @@ sudo su root te pones en el usuario root
 
 
 
+## Clase 10
+- sudo apt install gcc
+- sudo apt install make (Instaladores de libreiria C
+
+- man 2 printf
+- man 3 printf (para mirar comandos en c)
+
+### Estructura programa en C
+```c
+#include<stdio.h>
+
+int main(){
+
+return 0;
+}
+```
+
+Ejemplo de programa en C
+```c
+#include <stdio.h>
+#include <unistd.h>
+
+int main(){
+
+    printf("Hola mundo\n");
+    sleep(3);
+    printf("Adios\n");
+
+return 0; 
+}
+
+```
+
+- gedit holamundo.c & (Editor de texto de linux)
+
+cc Practica1/programa1.c -o programa1 -lm (compilar en c++);
+
+cc Practica1/programa1.c Practica1/funciones.c -o programa1 -lm (compilar usando un archivo de funciones, se debera escribir la cabecera de la funcion a usar antes del main)
+
+**Para evitar colocar cabeceras se debera crear un fichero de cabeceras .h**
+```programa.c
+#include <stdio.h>
+#include "funciones.h"
+
+
+int main(){
+int num;
+printf("Ingrese un numero: \n");
+scanf("%d", &num);
+vercoseno(num);
+
+
+    return 0;
+}
+```
+
+```funciones.c
+#include <math.h>
+#include <stdio.h>
+void vercoseno(int radianes){
+    printf("El coseno de %d, es %f\n",radianes, cos(radianes));
+
+}
+```
+```funciones.h
+void vercoseno(int radianes);
+```
 
 
