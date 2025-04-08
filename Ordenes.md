@@ -318,7 +318,9 @@ cc Practica1/programa1.c -o programa1 -lm (compilar en c++);
 cc Practica1/programa1.c Practica1/funciones.c -o programa1 -lm (compilar usando un archivo de funciones, se debera escribir la cabecera de la funcion a usar antes del main)
 
 **Para evitar colocar cabeceras se debera crear un fichero de cabeceras .h**
-```programa.c
+
+**Programa.c**
+```c
 #include <stdio.h>
 #include "funciones.h"
 
@@ -333,8 +335,8 @@ vercoseno(num);
     return 0;
 }
 ```
-
-```funciones.c
+**funciones.c**
+```c
 #include <math.h>
 #include <stdio.h>
 void vercoseno(int radianes){
@@ -342,7 +344,9 @@ void vercoseno(int radianes){
 
 }
 ```
-```funciones.h
+
+**funciones.h**
+```c
 void vercoseno(int radianes);
 ```
 
