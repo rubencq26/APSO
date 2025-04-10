@@ -361,3 +361,80 @@ holamundo: Practica1/programa1.c Practica1/funciones.c Practica1/funciones.holam
 holamundoencpp: holamundoencpp.cpp
 	c++ holamundoencpp.cpp -o holamundoencpp
 ```
+## Clase 11
+
+### Punteros
+```c
+#include <stdio.h>
+
+int main(){
+
+    int v=10, *p;
+
+    p = &v;
+
+    printf("La direccion de memoria de v es %p\n",&v);
+    printf("La direccion de p es %p\n", &p);
+    printf("p=%p; v= %i; direccion de p= %p, direccion de v= %p\n", &p, *p, p, p);
+
+
+    return 0;
+}
+```
+### Hilos
+
+- #include <pthread.h>
+
+Los hilos solo permiten funciones (void *)
+
+int pthread_create(pthread_t *thread, const pthread_attr_t *attr, void *(*start_routine) (void *), void *arg);
+
+- pthread_t *thread        hilo que vamos a manejar
+
+- const pthread_attr_t *attr      sirve para dar restricciones al hilo
+
+- void *(*start_routine) (void *)   Funcion que vamos a usar
+
+- void *arg  parametros que quiera pasar
+
+pthread_create(&h1, NULL, f1,NULL);
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
+
+
+void *f1()
+{
+    int i;
+    for (i = 0; i < 3; i++)
+    {
+        printf("Soy f1 en la iteracion %d\n", i);
+        sleep(1);
+    }
+}
+
+void *f2()
+{
+    int i;
+    for (i = 0; i < 3; i++)
+    {
+        printf("Soy f2 en la iteracion %d\n", i);
+        sleep(1);
+    }
+}
+
+int main()
+{   
+    pthread_t h1, h2;
+    printf("Comienzo la ejecucion\n");
+    pthread_create(&h1, NULL, f1,NULL);
+    pthread_create(&h2, NULL, f2,NULL);
+    sleep(4);
+    printf("Finalizo la ejecucion\n");
+   
+    return 0;
+}
+```
+La velocidad y el orden del que ocurran las cosas es impredecible
