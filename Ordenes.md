@@ -438,3 +438,125 @@ int main()
 }
 ```
 La velocidad y el orden del que ocurran las cosas es impredecible
+
+Para que el main no rompa el hilo cerrando el programa se usa pthread_join(hilo, NULL);
+
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
+
+
+void *f1()
+{
+    int i;
+    for (i = 0; i < 3; i++)
+    {
+        printf("Soy f1 en la iteracion %d\n", i);
+        sleep(1);
+    }
+}
+
+void *f2()
+{
+    int i;
+    for (i = 0; i < 6; i++)
+    {
+        printf("Soy f2 en la iteracion %d\n", i);
+        sleep(1);
+    }
+}
+
+int main()
+{   
+    pthread_t h1, h2;
+    printf("Comienzo la ejecucion\n");
+    pthread_create(&h1, NULL, f1,NULL);
+    pthread_create(&h2, NULL, f2,NULL);
+    for(int i =0;i<3; i++){
+        printf("Soy main en la iteracion %i\n", i);
+        sleep(1);
+    }
+
+    pthread_join(h1, NULL);
+    printf("Ha terminado h1\n");
+    pthread_join(h2, NULL);
+    printf("Finalizo la ejecucion\n");
+   
+    return 0;
+}
+```
+
+Para pasar un parametro al hilo se usa el apartado arg y se fuerza el tipo
+```c
+void *f1(int *retardo)
+{
+    int i;
+    for (i = 0; i < 3; i++)
+    {
+        printf("Soy f1 en la iteracion %d\n", i);
+        sleep(*retardo);
+    }
+}
+
+ pthread_create(&h1, NULL,(void *) f1,&delay);
+```
+
+Para que un hilo retorne un valor
+```c
+#include <stdio.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <stdlib.h>
+
+
+void *f1(int *retardo)
+{
+    int i;
+    int *retorno=malloc(sizeof(int));
+    *retorno = 55;
+    for (i = 0; i < 3; i++)
+    {
+        printf("Soy f1 en la iteracion %d\n", i);
+        sleep(*retardo);
+    }
+    pthread_exit(retorno);
+    
+}
+
+void *f2()
+{
+    int i;
+    for (i = 0; i < 6; i++)
+    {
+        printf("Soy f2 en la iteracion %d\n", i);
+        sleep(1);
+    }
+}
+
+int main()
+{   
+    pthread_t h1, h2;
+    printf("Comienzo la ejecucion\n");
+    int delay = 2;
+
+    pthread_create(&h1, NULL,(void *) f1,&delay);
+    pthread_create(&h2, NULL, f2,NULL);
+    for(int i =0;i<3; i++){
+        printf("Soy main en la iteracion %i\n", i);
+        sleep(1);
+    }
+    int *retorn;
+
+    pthread_join(h1,(void **) &retorn);
+    printf("Ha terminado h1 con valor %d\n", *retorn);
+    pthread_join(h2, NULL);
+    printf("Finalizo la ejecucion\n");
+   
+    return 0;
+}
+```
+
+Para desechar un hilo
+
+pthread_detach(h2);
