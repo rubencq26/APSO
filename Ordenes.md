@@ -560,3 +560,8 @@ int main()
 Para desechar un hilo
 
 pthread_detach(h2);
+
+Para numeros aleatorios
+srand(get_pid());
+
+x = rand();
