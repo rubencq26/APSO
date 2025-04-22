@@ -687,7 +687,7 @@ int main()
 }
 ```
 
-Para redireccionar la salida de un programa dessde el codigo se usa close(1) para eliminar la salida de la pantalla y open("f1.txt") para cambiar la primera posicion vacia de la tabla de camales a f1.txt
+Para redireccionar la salida de un programa dessde el codigo se usa close(1) para eliminar la salida de la pantalla y open("f1.txt") para cambiar la primera posicion vacia de la tabla de camales a f1.txt, para volver a abrir la pantalla open("/dev/tty", O_WRONLY)
 ```c
 #include <stdio.h>
 #include <sys/types.h>
