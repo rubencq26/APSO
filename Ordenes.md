@@ -659,3 +659,65 @@ int main()
 }
 ```
 
+Para mandar mensajes por pantalla por el canal 2, el de los erroresse usa la funcion perror("");
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+
+int main()
+{
+
+    printf("Comienza padre\n");
+    printf("Soy el proceso padre con un PID %d, y mi padre %d\n", getpid(), getppid());
+    int vpid = fork();
+    if (vpid == 0)
+    {
+        printf("Soy el proceso copia con PID %d y mi padre %d\n", getpid(), getppid());
+        execl("hijo", "hijo", NULL);
+        perror("Error de execl");
+    }
+    else
+    {
+        sleep(1);
+        printf("Fin padre\n");
+    }
+    return 0;
+}
+```
+
+Para redireccionar la salida de un programa dessde el codigo se usa close(1) para eliminar la salida de la pantalla y open("f1.txt") para cambiar la primera posicion vacia de la tabla de camales a f1.txt
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+
+int main()
+{
+
+    printf("Comienza padre\n");
+    printf("Soy el proceso padre con un PID %d, y mi padre %d\n", getpid(), getppid());
+    int vpid = fork();
+    if (vpid == 0)
+    {
+        printf("Soy el proceso copia con PID %d y mi padre %d\n", getpid(), getppid());
+        close(1);
+        open("f1.txt", O_WRONLY | O_CREAT, 0600);
+        execl("hijo", "hijo", NULL);
+        perror("Error de execl");
+        exit(-1);
+    }
+    else
+    {
+        sleep(1);
+        printf("Fin padre\n");
+    }
+    return 0;
+}
+```
+
