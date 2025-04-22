@@ -565,3 +565,97 @@ Para numeros aleatorios
 srand(get_pid());
 
 x = rand();
+
+## Clase 13
+
+Obtener el PID de un programa, con getpid() y el pid del padre del proceso getppid()
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main(){
+
+    printf("Soy el proceso padre con un PID %d, y padre %d\n", getpid(), getppid());
+
+    return 0;
+}
+```
+
+```Makefile
+all: padre
+
+padre: padre.c
+	cc padre.c -o padre
+```
+
+La funcion fork() crea una copia del mismo proceso, empezando su ejecución a partir del fork()
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main(){
+
+    printf("Comienza padre\n");
+    fork();
+    printf("Soy el proceso padre con un PID %d, y mi padre %d\n", getpid(), getppid());
+    sleep(100);
+    printf("Fin padre\n");
+
+    return 0;
+}
+```
+La funcion fork devuelve un valor, para el padre devuelve el PID del hijo y para el proceso hijo devuelve 0
+
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+int main()
+{
+
+    printf("Comienza padre\n");
+    printf("Soy el proceso padre con un PID %d, y mi padre %d\n", getpid(), getppid());
+    int vpid = fork();
+    if (vpid == 0)
+    {
+        printf("Soy el proceso copia con PID %d y mi padre %d\n", getpid(), getppid());
+    }
+    else
+    {
+        printf("Fin padre\n");
+    }
+    return 0;
+}
+```
+
+execl(ruta, nombre ejecutable, parametros), permite que un proceso lance otro proceso, si se ejecuta correctamente, todo lo que haya despues de un execl no se ejecuta, por ello se deberia lanzar el execl en un proceso copia
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+
+
+int main()
+{
+
+    printf("Comienza padre\n");
+    printf("Soy el proceso padre con un PID %d, y mi padre %d\n", getpid(), getppid());
+    int vpid = fork();
+    if (vpid == 0)
+    {
+        printf("Soy el proceso copia con PID %d y mi padre %d\n", getpid(), getppid());
+        execl("hijo", "hijo", NULL);
+        printf("fin copia\n");
+    }
+    else
+    {
+        sleep(1);
+        printf("Fin padre\n");
+    }
+    return 0;
+}
+```
+
