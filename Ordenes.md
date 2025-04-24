@@ -721,3 +721,145 @@ int main()
 }
 ```
 
+## Clase 14
+
+wait(NULL) espera por que un hijo termine su ejecucion
+```c
+int main()
+{
+    int vpid;
+    printf("Soy el proceso padre con el PID %d\n", getpid());
+
+    vpid = fork();
+
+    if (vpid == 0)
+    {
+        execl("hijo", "hijo", NULL);
+        perror("error de execl");
+        exit(-1);
+    }
+    else if (vpid == -1)
+        perror("error de fork");
+
+    int pidfin = wait(NULL);
+
+    printf("Fin del padre, que crea a %d, y termina %d\n", vpid, pidfin);
+
+    return 0;
+}
+}
+```
+
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+
+
+int main(){
+
+    printf("Soy el proceso Hijo con pid %d\n", getpid());
+    sleep(2);
+    printf("Fin del hijo\n");
+    exit(13);
+}
+```
+```Makefile
+all: menu hijo
+
+menu: menu.c
+	cc menu.c -o menu -lm
+
+hijo: hijo.c
+	cc hijo.c -o hijo -lm
+```
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
+
+int main()
+{
+    int vpid, retorno;
+    printf("Soy el proceso padre con el PID %d\n", getpid());
+
+    vpid = fork();
+
+    if (vpid == 0)
+    {
+        execl("hijo", "hijo", NULL);
+        perror("error de execl");
+        exit(-1);
+    }
+    else if (vpid == -1)
+        perror("error de fork");
+
+    int vpid2 = fork();
+    if (vpid2 == 0)
+    {
+        execl("hijo", "hijo", NULL);
+        perror("error de execl");
+        exit(-1);
+    }
+
+    else if (vpid2 == -1)
+    {
+        perror("error de fork");
+    }
+
+    if (WIFEXITED(retorno))
+    {
+        printf("Mi hijo devuelve %d\n", WEXITSTATUS(retorno));
+    }
+    else if (WIFSIGNALED(retorno))
+    {
+        printf("Mi hijo mere por señal %d\n", WTERMSIG(retorno));
+    }
+    else
+    {
+        printf("Mi hijo muere de forma extraña\n");
+    }
+
+    printf("Fin del padre, que crea a %d, y termina %d\n", vpid, vpid2);
+
+    return 0;
+}
+```
+
+
+signal para recoger señales y tratarlas sin parar el programa
+```c
+#include <stdio.h>
+#include <sys/types.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <signal.h>
+
+void R10(){
+    printf("Llega señal 10\n");
+}
+
+int main(){
+
+    signal(10, R10);
+    signal(12, R10);
+    int i = 0;
+    printf("Soy el proceso recibidor con pid %d\n", getpid());
+    while(1){
+        printf("Iteracion %d\n", i++);
+        sleep(1);
+    }
+    return 0;
+}
+```
+
+Un sleep finaliza con la llegada de una señal
+
+Con pause(), el programa para hasta que no le llegue una señal
+
+kill(pid, señal) manda señales desde un programa a otro
+
+alarm(tiempo) sirve para mandar la señal 14 al propio programa
