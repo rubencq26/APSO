@@ -863,3 +863,156 @@ Con pause(), el programa para hasta que no le llegue una señal
 kill(pid, señal) manda señales desde un programa a otro
 
 alarm(tiempo) sirve para mandar la señal 14 al propio programa
+
+## Clase 15
+
+mkfifo("fifo1", 0600); sirve para crear ficheros tipo FIFO, ficheros tipo tuberia.
+
+unlink("fifo1"); borra archivos
+
+Para leer o escribir en una fifo tenemos que tener abierta la fifo en lectura y escritura a la vez
+
+Si lees una FIFO vacia se queda esperando siempre y cuando algun proceso la tenga abierta en escritura. Si no esta abierta en escritura no lee y se queda la variable como esta
+
+read() devuelve 0 si no ha leido nada
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+
+int main(){
+
+    printf("Soy el proceso B con pid %d\n", getpid());
+    int fif1 = open("fifo1", O_WRONLY);
+
+    float num= 58.33;
+    write(fif1, &num, sizeof(float));
+    num = num + 10;
+    write(fif1, &num, sizeof(float));
+
+    close(fif1);
+    return 0;
+
+}
+```
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+int main(){
+
+    printf("Soy el proceso C con pid %d\n", getpid());
+    int fif1 = open("fifo1", O_RDONLY);
+
+    printf("C:   Leyendo FIFO\n");
+
+    float num;
+
+    read(fif1, &num, sizeof(float));
+
+    printf("C: leido %f\n", num);
+
+    read(fif1, &num, sizeof(float));
+    printf("C: leido %f\n", num);
+    close(fif1);
+
+    printf("Fin C\n");
+}
+```
+
+PIPES
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <sys/stat.h>
+
+
+int main(){
+
+    printf("Soy el proceso A con pid %d\n", getpid());
+
+    int tubo[2];
+
+    pipe(tubo);
+
+    int vpidB = fork();
+    if(vpidB == 0){
+        close(2);
+        dup(tubo[1]);
+        execl("B","B", NULL);
+        perror("Error de execl");
+        exit(-1);
+    }else if(vpidB == -1){
+        perror("fork");
+    }
+
+    close(tubo[1]);
+    float dato;
+
+    read(tubo[0], &dato, sizeof(dato));
+    printf("A: Recibo %f\n", dato);
+
+    read(tubo[0], &dato, sizeof(dato));
+    printf("A: Recibo %f\n", dato);
+
+
+    read(tubo[0], &dato, sizeof(dato));
+    printf("A: Recibo %f\n", dato);
+
+
+
+    wait(NULL);
+    
+
+    printf("Fin del proceso A\n");
+
+    
+    return 0;
+}
+```
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+
+
+int main(){
+
+    printf("Soy el proceso B con pid %d\n", getpid());
+
+
+    printf("B: Escribiendo en la PIPE\n");
+
+    float num= 58.33;
+    write(2, &num, sizeof(float));
+    num = num + 10;
+    write(2, &num, sizeof(float));
+   
+    
+    
+   
+    printf("Fin de B\n");
+
+
+
+    return 0;
+
+}
+```
