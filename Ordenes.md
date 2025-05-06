@@ -1016,3 +1016,21 @@ int main(){
 
 }
 ```
+
+## Clase 16
+Cola de mensajes, dentro se escribe una estructura:
+```c
+struct mensaje{
+	long tipo;
+	...
+}
+```		
+
+para optener mensajes se usa msgget(clave,0600 | IPC_CREAT);
+
+para crear una clave se usa ftok("archivo", 2025);
+a partir de una ruta genera un hash
+
+borrar cola msgctl(idcola, IPC_RMID, NULL);
+
+mandar un mensaje a la cola msgnd(idcola, &mens1, sizeof(mens1) - sizeof(long), IPC_NOWAIT);
